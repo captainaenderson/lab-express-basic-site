@@ -2,19 +2,21 @@ const express = require('express');
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/views'));
+app.set("views", __dirname + "/views");
+
+app.set("view engine", "hbs");
 
 app.get('/', (req, res) => {
-   res.sendFile(__dirname + '/views/home.html');
+   res.render(__dirname + '/views/home.hbs');
 });
 
 app.get('/about', (req, res) => {
-   res.sendFile(__dirname + '/views/about.html');
+   res.render(__dirname + '/views/about.hbs');
 });
 
 
 app.get('/works', (req, res) => {
-   res.sendFile(__dirname + '/views/works.html');
+   res.render(__dirname + '/views/works.hbs');
 });
 
 app.listen(3000);
